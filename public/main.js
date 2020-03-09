@@ -36,8 +36,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			function HomePage() {
 				return `<div class="page">
 						${Header()}
-						<h1>Laura Dern API</h1>
-						<p>Let's just say... gay rights!</p>
+						<h1 id="title">Laura Dern API</h1>
+						<p id="subtitle">🏳️‍🌈Let's just say... gay rights!!🏳️‍🌈</p>
 						${Cards(list)}
 						</div>`;
 			}
