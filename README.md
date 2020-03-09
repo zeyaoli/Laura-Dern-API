@@ -36,12 +36,15 @@ I started a new folder that contains neDB, a back-end script and the JSON file. 
 
 ![api_db](https://github.com/zeyaoli/Laura-Dern-API/blob/master/documentataion/api_db.png)
 
-After that, I switched back to the API folder that I had and put the database file in. I replaced the json write and read with neDB in the function that gets and pushes data. The process is relatively simple and I used PostMan for managing data. 
+After that, I switched back to the API folder that I had and put the database file in. I replaced the json write and read with neDB in the function that gets and pushes data. There is currently only one endPoint "/api", however, I decided to add more soon. I used PostMan for managing data (mainly post it and update). 
 
 
 ### Third Step: Front-end Development
 
-Frontend building process - reusable component 
+This time, I wrote totally reusable UI component for the API front-end page. There are only 3 lines in the body html code which gives a root div for putting stuff in. Rest of the page are built in Javascript (like react). It actually takes me a while to figure out how to retrieve data from the database and store it in global variable to use, which I didn't at the end. I put all the component inside the fetch so I can use the variable inside the scope. Creating reusable components definitely makes life way better. I only need to create card once and put all the data in, then every time I publish a new data into database, it automatically updates. 
+
+![html_code](https://github.com/zeyaoli/Laura-Dern-API/blob/master/documentataion/html_code.png)
+![main_js](https://github.com/zeyaoli/Laura-Dern-API/blob/master/documentataion/reusable_component.png)
 
 ### Next Step
 
