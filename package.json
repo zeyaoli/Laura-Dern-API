@@ -1,0 +1,21 @@
+{
+  "name": "laura-dern-api",
+  "version": "1.0.0",
+  "description": "An API of Laura Dern",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "api",
+    "laura-dern",
+    "server"
+  ],
+  "author": "Zeyao Li",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0"
+  }
+}
