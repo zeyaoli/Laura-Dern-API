@@ -33,12 +33,17 @@ window.addEventListener('DOMContentLoaded', () => {
 					${posts.map(Card).join('')}
 				</div>`;
 			}
+
+			function Footer() {
+				return `<footer> Developed by <a href="https://zeyaoli.com">Zeyao Li</a> 2020 </footer>`;
+			}
 			function HomePage() {
 				return `<div class="page">
 						${Header()}
 						<h1 id="title">Laura Dern API</h1>
 						<p id="subtitle">🏳️‍🌈Let's just say... gay rights!!🏳️‍🌈</p>
 						${Cards(list)}
+						${Footer()}
 						</div>`;
 			}
 
