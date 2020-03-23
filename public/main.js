@@ -4,34 +4,55 @@ window.addEventListener('DOMContentLoaded', () => {
 	fetch('/api')
 		.then((res) => res.json())
 		.then((data) => {
-			console.log(data);
-			// let list = getList(lists);
-			// console.log(list);
-			// return list.map((laura) => {
-			// 	// here are all the variables i need !
-			// 	// console.log(`${laura.name}  ${laura.year}`);
-			// });
-
-			document.getElementById('root').innerHTML = HomePage(data);
+			// console.log(data);
+			document.getElementById('page').innerHTML = HomePage(data);
+			// getMovie();
+			// getTV();
 		})
 		.catch((err) => {
 			console.log(err);
 		});
 });
 
-// const getList = (lists) => {
-// 	return lists.map((list) => {
-// 		return list.list;
-// 	});
-// };
-
-function Header() {
-	return `<div class="header">
-				<li>Home</li>
-				<li>Documentation</li>
-				<li><a href="/about">About</a></li>
-			</div>`;
+function getMovie() {
+	document.getElementById('clickMovie').onclick = () => {
+		fetch('/api/type/movie')
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				document.getElementById('page').innerHTML = HomePage(data);
+				getMovie();
+				getTV();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 }
+
+function getTV() {
+	document.getElementById('clickTV').onclick = () => {
+		fetch('/api/type/tv')
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				document.getElementById('page').innerHTML = HomePage(data);
+				getMovie();
+				getTV();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+}
+
+// function Header() {
+// 	return `<div class="header">
+// 				<li>Home</li>
+// 				<li>Documentation</li>
+// 				<li><a href="/about">About</a></li>
+// 			</div>`;
+// }
 
 function Card(cardData) {
 	return `<div class="card">
@@ -52,13 +73,10 @@ function Footer() {
 	return `<footer> Developed by <a href="https://zeyaoli.com">Zeyao Li</a> 2020 </footer>`;
 }
 function HomePage(cardData) {
-	return `<div class="page">
-			${Header()}
-			<h1 id="title">Laura Dern API</h1>
+	return `
 			<p id="subtitle">🏳️‍🌈Let's just say... gay rights!!🏳️‍🌈</p>
 			${Cards(cardData)}
-			${Footer()}
-			</div>`;
+			${Footer()}`;
 }
 
 // function AboutPage(){

@@ -26,9 +26,6 @@ const ListSchema = mongoose.Schema({
 
 const List = mongoose.model('List', ListSchema);
 
-// const db = new Datastore({ filename: `lauradern.db`, autoload: true });
-// console.log(db);
-
 app.use(express.static(viewsURL));
 app.use(express.json());
 
@@ -40,22 +37,33 @@ app.get('/about', (req, res) => {
 	res.sendFile(path.join(__dirname, 'views/about.html'));
 });
 
-// const getData = (cb) => {
-// 	db.find({}).sort({ 'list.year': -1 }).exec((err, lists) => {
-// 		cb(err, lists);
-// 	});
-// };
+app.get('/documentation', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/documentation.html'));
+});
+
+app.get('/documentation/movie', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/movie.html'));
+});
+
+app.get('/documentation/tv', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/tvshow.html'));
+});
+
+app.get('/documentation/random', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/random.html'));
+});
+
+app.get('/submit', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/submit.html'));
+});
 
 const getData = (cb) => {
-	List.find({}, (err, docs) => {
+	List.find({}).sort({ year: -1 }).exec((err, docs) => {
 		cb(err, docs);
 	});
 };
 
 const addData = (data, cb) => {
-	// db.insert({ list: data }, (err, newData) => {
-	// 	cb(err, newData);
-	// });
 	List.create(data, (err, newData) => {
 		cb(err, newData);
 	});
@@ -67,6 +75,7 @@ app.get('/api', (req, res) => {
 	// getData((err, lists) => {
 	// 	res.json(lists);
 	// });
+	console.log(req.query);
 	getData((err, docs) => {
 		res.json(docs);
 	});
@@ -78,12 +87,30 @@ app.get('/api/random', (req, res) => {
 	});
 });
 
-// app.get('/api/type');
+app.get('/api/type/movie', (req, res) => {
+	List.find({ type: 'movie' }, (err, docs) => {
+		res.json(docs);
+	});
+});
+
+app.get('/api/type/tv', (req, res) => {
+	List.find({ type: 'tv show' }, (err, docs) => {
+		res.json(docs);
+	});
+});
 
 app.post('/api', (req, res) => {
 	const newData = req.body;
 	addData(newData, (err, newData) => {
 		res.json(newData);
+	});
+});
+
+app.delete('/api/:id', (req, res) => {
+	const id = req.params.id;
+
+	List.findByIdAndDelete(id, (err, deletedObject) => {
+		res.json({ deletedObject: deletedObject });
 	});
 });
 
